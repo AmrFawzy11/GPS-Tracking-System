@@ -1,7 +1,7 @@
 void initialization (void)
 {
 SYSCTL_RCGCGPIO_R|=0x23; //initializing clock for ports A,B,F
-while((SYSCTL_PRGPIO_R&0x23)==0); //delay 
+while((SYSCTL_PRGPIO_R&0x23)==0){}; //delay 
 //PORT F
   GPIO_PORTF_LOCK_R=0x4C4F434B; //UNLOCK GPIO FOR PORT F
   GPIO_PORTF_CR_R=0x1F; //allow changes to PF 0-4
