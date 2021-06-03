@@ -17,7 +17,16 @@ double distance(double lat1, double lon1, double lat2, double lon2);
   if ((lat1 == lat2) && (lon1 == lon2)) {
     return 0;
   }
- return 1;
+else {
+    dlat = lat2 - lat1;
+    dlon = lon2 - lon1;
+    a = sin(dlat/2) * sin(dlat/2) + cos(lat1) * cos(lat2) * sin(dlon/2) * sin(dlon/2);
+    c = 2 * asin(sqrt(a));
+    r = 6371;
+    dist = c * r * 1000;
+
+    return (dist);
+  }
 }
 
  double toRadians(double deg) {
