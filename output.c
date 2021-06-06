@@ -1,6 +1,17 @@
 #include "C:/Keil/ARM/INC/ARM/tm4c123gh6pm.h"
 #include "stdint.h"
-void delay(int x);
+
+
+// delay between every digit to make the 3 digits turn on at the same time
+void delay(int x)
+{
+    int i = 0;
+    int j = 0;
+    for (i; i < x; i++){
+    	for (j; j < x; j++)
+        {}
+    }
+}
 
 void print (int mod){
 
