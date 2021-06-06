@@ -54,26 +54,26 @@ void LCD_OUT(unsigned char distance){
 	
 	int mod1, mod2, mod3;
 	
-	mod1 = distance %10;
+	mod1 = distance %10;                 // to extract the least significant number of the distance
 	distance /=10;
 	
-	mod2 = distance %10;
+	mod2 = distance %10;                 // to extract the 2nd number of the distance
 	distance /=10;
 	
-	mod3 = distance %10;
+	mod3 = distance %10;                //  to extract the most significant number of the distance
 	distance /=10;
 	
 	 
 		
-	GPIO_PORTA_DATA_R = ~0x08;
+	GPIO_PORTA_DATA_R = ~0x08;          //  send the 1st number to the function to enable the 1st 7 segment
 	print(mod1);
 	delay(1000);
 		
-	GPIO_PORTA_DATA_R = ~ 0x04;
+	GPIO_PORTA_DATA_R = ~ 0x04;         //  send the 2nd number to the function to enable the 2nd 7 segment
 	print(mod2);
 	delay(1000);
 		
-	GPIO_PORTA_DATA_R = ~ 0x80;
+	GPIO_PORTA_DATA_R = ~ 0x80;         //  send the 3rd number to the function to enable the 3rd 7 segment
 	print(mod3);
 	delay(1000);	
 }
