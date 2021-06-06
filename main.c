@@ -23,6 +23,11 @@ while (1){
 	button = SW_Input();
 
     switch(button){
+		    
+     case 0x11 :                    // if no switch is pressed
+                LED_OUT  = 0x02;    // turn on red, blue, green leds together so it will appear white
+                OUT_DIST = 123;    // put distance equal 123 meter
+                break;    
 
      case 0x01 :                    // if switch 1 is pressed
                 LED_OUT  = 0x02;    // turn on red led
@@ -32,7 +37,7 @@ while (1){
                 LED_OUT  = 0x04;    // turn on blue led
                 OUT_DIST = 0x0A;    // put distance equal 10 meter
                 break;
-     case 0x11 :                    // if switch 1 and 2 are pressed
+     case 0x00 :                    // if switch 1 and 2 are pressed
                 LED_OUT  = 0x08;    // turn on green led
                 OUT_DIST = 0x64;    // put distance equal 100 meter
                 break;
