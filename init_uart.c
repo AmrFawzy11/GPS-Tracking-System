@@ -1,0 +1,19 @@
+#include "C:/Keil/ARM/INC/ARM/tm4c123gh6pm.h"
+#include "stdint.h"
+#include "string.h"
+#include <stdlib.h>
+
+
+void UART_Init(){
+  SYSCTL_RCGCUART_R |=0x02;
+  SYSCTL_RCGCGPIO_R |=0x04;
+	UART1_CTL_R &= ~0x01;
+	UART1_IBRD_R = 104;
+	UART1_FBRD_R = 11;
+	UART1_LCRH_R = 0x07;
+	UART1_CTL_R |= (UART_CTL_UARTEN | UART_CTL_RXE | UART_CTL_TXE);
+	GPIO_PORTC_AFSEL_R |= 0x30;
+	GPIO_PORTC_DEN_R |= 0x30;
+	GPIO_PORTC_PCTL_R = (GPIO_PORTC_PCTL_R&0xFF00FFFF) | (GPIO_PCTL_PC4_U1RX | GPIO_PCTL_PC5_U1TX);
+	GPIO_PORTC_AMSEL_R &= ~0x30;
+}
