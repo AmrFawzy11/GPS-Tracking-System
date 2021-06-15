@@ -244,6 +244,7 @@ UART_Init();
 	
 while (1){
 ReadGpsModule();
+led_out((int) distance( lat1,  latitude_result,  lon1,  longitude_result))
 return 0;
 }
 	
