@@ -60,7 +60,7 @@ else {
     a = sin(dlat/2) * sin(dlat/2) + cos(lat1) * cos(lat2) * sin(dlon/2) * sin(dlon/2);
     c = 2 * asin(sqrt(a));
     r = 6371;                       // r is the Radius of earth in kilometers.
-    dist = c * r ;
+    dist = c * r * 1000;
 
     return (dist);
   }
@@ -84,16 +84,7 @@ void UART_Init(){
 	GPIO_PORTC_PCTL_R = (GPIO_PORTC_PCTL_R&0xFF00FFFF) | (GPIO_PCTL_PC4_U1RX | GPIO_PCTL_PC5_U1TX);
 	GPIO_PORTC_AMSEL_R &= ~0x30;
 }
- uint8_t UART1_ReadAvailable(void){
-	 return (( UART1_FR_R & UART_FR_RXFE )== UART_FR_RXFE)? 0:1;
- }
-
-char UART1_Read(){
-  while( UART1_ReadAvailable() != 1);
-	return UART1_DR_R &0XFF;
-} 
  
-
 void delay(int x)
 {
     int i = 0;
@@ -241,13 +232,6 @@ minutes=longitude-(double)(degrees*100);
 seconds=minutes/60.00;
 longitude_result=degrees+seconds;
 
-
-	
-	
-	
-	
-	
-	
 LCD_OUT((int) distance( lat1,  latitude_result,  lon1,  longitude_result));
 }
 }
@@ -255,15 +239,12 @@ LCD_OUT((int) distance( lat1,  latitude_result,  lon1,  longitude_result));
 
 
 int main (){
-while (1){
 initialization();
-
-
 UART_Init();
-	UART1_Read();
 	
+while (1){
 ReadGpsModule();
-	
-	return 0;
+return 0;
 }
+	
 }
