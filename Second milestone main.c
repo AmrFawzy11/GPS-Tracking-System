@@ -166,7 +166,7 @@ void LCD_OUT(int distance){
 
 
 
-void ReadGpsModule(){
+int ReadGpsModule(){
 char x ,GPS_values[100],latitudeResult[10],longitudeResult[10],*token,protocol_values[12][20];
 char x0,x1,x2,x3,x4,x5,x6;
 const char comma[2] = ",";
@@ -231,21 +231,24 @@ degrees=longitude/100;
 minutes=longitude-(double)(degrees*100);
 seconds=minutes/60.00;
 longitude_result=degrees+seconds;
-
-LCD_OUT((int) distance( lat1,  latitude_result,  lon1,  longitude_result));
+dist =  (int) distance( lat1,  latitude_result,  lon1,  longitude_result);
+lat1 = latitude_result;
+lon1 = longitude_result;
 }
 }
-}}}}}}}
+}}}}}}
+return dist;
+}
 
 
 int main (){
 initialization();
 UART_Init();
-	
+int total_distance = 0;	
 while (1){
-ReadGpsModule();
-led_out((int) distance( lat1,  latitude_result,  lon1,  longitude_result))
-return 0;
+total_distance += ReadGpsModule();
+LCD_OUT(total_distance);
+led_out(total_distance);
 }
-	
+return 0;
 }
